@@ -1,0 +1,35 @@
+{
+  "name": "common-essentials",
+  "version": "0.1.0",
+  "description": "Common Javascript Essentials which nodejs is missing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noamlin/common-essentials.git"
+  },
+  "author": "Noam Lin <noamlin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/noamlin/common-essentials/issues"
+  },
+  "homepage": "https://github.com/noamlin/common-essentials",
+  "keywords": [
+    "javascript functions",
+    "essentials",
+    "stack",
+    "line",
+    "optional arguments",
+    "nl2br",
+    "vardump",
+    "variable dump",
+    "console logging",
+    "console error output",
+    "console tagging"
+  ],
+  "dependencies": {
+    "extend": "^2.0.0"
+  }
+}
