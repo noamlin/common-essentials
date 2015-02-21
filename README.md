@@ -76,8 +76,13 @@ CE.varDump(someObj, {depth:2}); // console logs the variable with a recursive wa
 **tagLog**(tag, text, N-params..) - *tag* (required) is the word to tag the line with. *text* (required) is the text to log, and this text can be formatted like console.log's. *N-params* (optional) extra parameters that console.log can get.
 ```
 var CE = require('common-essentials');
-CE.tagLog('DB', 'connected to database'); // logs: [DB] connected to database
-CE.tagLog('PORT', 'listening on port %d', 3000); // logs: [PORT] listening on port 3000
+CE.tagLog('DB', 'connected to database');
+CE.tagLog('My name', 'my name is %s', name);
+CE.tagLog('PORT', 'listening on port %d', 3000);
+// will log:
+//       [DB] connected to database
+//  [My name] my name is noam
+//     [PORT] listening on port 3000
 ```
 
 ---
@@ -93,3 +98,13 @@ function foo(err, callback) {
 //     [>] (/path/index.js:4:12)  "function foo() {"
 //     [>] (/path/node_modules/something.js:43:19)  "function () {"
 ```
+
+#### TESTING
+After installation the devDependencies for unit testing are installed and you can test all the functions yourself. Open your terminal and type:
+```
+cd PATH/TO/node_modules/common-essentials
+npm test
+```
+
+#### CONTRIBUTION
+I will love to see this library go bigger and bigger. Anyone who thinks he created a function that every nodejs user needs can contribute :)
