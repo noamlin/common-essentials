@@ -4,7 +4,7 @@
   "description": "Common Javascript Essentials which nodejs is missing",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
@@ -31,5 +31,9 @@
   ],
   "dependencies": {
     "extend": "^2.0.0"
+  },
+  "devDependencies": {
+    "chai": "^2.0.0",
+    "mocha": "^2.1.0"
   }
 }

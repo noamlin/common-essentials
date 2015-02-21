@@ -47,7 +47,7 @@ module.exports.optionalArg = optionalArg;
  * converts new-line characters to '<br>' tags
  *
  * @param {string} "str" [*required] - the string to convert its line-breaks chars to '<br>'.
- * @param {boolean} "html5" [optional] - whether to use xhtml '<br />' or else html5 '<br>'. default 'true'.
+ * @param {boolean} "html5" [optional] - whether to use xhtml '<br />' or else html5 '<br>'. default: true
  *
  * @return {string} - new converted string
  */
@@ -76,7 +76,7 @@ module.exports.nl2br = nl2br;
  * relies on node's 'util.inspect'
  *
  * @param {mixed} "variable" [*required] - the variable to dump its content
- * @param {boolean} "consoleDump" [optional] - whether to log the data to the console or return a formatted string for a browser
+ * @param {boolean} "consoleDump" [optional] - whether to log the data to the console or return a formatted string for a browser. default: true
  * @param {object} "options" [optional] - options for 'util'
  *
  * @return {string} - a string ready for printing out
@@ -91,7 +91,8 @@ var varDump = function varDump(variable, consoleDump, userOptions) {
     var options = {
         showHidden: true,
         depth: 4,
-        colors: false
+        colors: false,
+        html5: true
     };
     extend(options, userOptions);
 
@@ -115,7 +116,7 @@ var varDump = function varDump(variable, consoleDump, userOptions) {
     if(!consoleDump) {
         output = output.replace(/(\u0020\u0020)/g, ' &nbsp;'); // replace every 2 spaces into one space + &nbsp
         output = output.replace(/(\t)/g, ' &nbsp;&nbsp;&nbsp;'); // replace every tab into one space + 3 &nbsp
-        output = nl2br(output);
+        output = nl2br(output, options.html5);
     }
     else {
         console.log(output);
@@ -160,16 +161,18 @@ module.exports.tagLog = tagLog;
 var errorLog = function errorLog(err) {
     tagLog('ERROR', err.message);
 
-    var stackLength = __stack.length,
+    var stack = __stack;
+
+    var stackLength = stack.length,
         stackMessage,
         functionString;
 
     for(var i=1; i < stackLength; i++) {
-        functionString = __stack[i].getFunction().toString();
+        functionString = stack[i].getFunction().toString();
         functionString = functionString.split('\n')[0];
-        stackMessage = '('+__stack[i].getFileName();
-        stackMessage += ':'+__stack[i].getLineNumber();
-        stackMessage += ':'+__stack[i].getColumnNumber()+')';
+        stackMessage = '('+stack[i].getFileName();
+        stackMessage += ':'+stack[i].getLineNumber();
+        stackMessage += ':'+stack[i].getColumnNumber()+')';
         stackMessage += '  "' + functionString + '"';
         tagLog('>', stackMessage);
     }
