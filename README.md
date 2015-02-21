@@ -57,6 +57,8 @@ doEscape(); // options isn't set, so shouldEscapeChars will be its default - tru
 var CE = require('common-essentials');
 var someText = CE.nl2br("a \r\n b \n\r c \n d \r e \r\n\r f \n\r\n g");
 // someText = "a <br> b <br> c <br> d <br> e <br><br> f <br><br> g"
+someText = CE.nl2br("a\nb", false);
+// someText = "a<br />b"
 ```
 
 ---
@@ -68,7 +70,8 @@ var someObj = {
   b:"text",
   c:[0,1,2]
 };
-response.write( CE.varDump(someObj, false) ); // sends the client a formated html variable dump
+response.write( CE.varDump(someObj, false) ); // sends the client an html5 formatted variable dump
+response.write( CE.varDump(someObj, false, {html5: false}) ); // sends the client a xhtml formatted variable dump
 CE.varDump(someObj, {depth:2}); // console logs the variable with a recursive walk until depth 2
 ```
 
